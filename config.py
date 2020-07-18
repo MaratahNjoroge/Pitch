@@ -17,7 +17,7 @@ class Config:
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     '''
     Production configurations child class
     '''
