@@ -21,7 +21,7 @@ class User(UserMixin,db.Model):
     # role_id e= db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    password_secure = db.Column(db.String())
+    pass_secure = db.Column(db.String())
     password_hash = db.Column(db.String(255))
     # reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
     pitches = db.relationship("Pitch", backref="user", lazy = "dynamic")
@@ -69,8 +69,8 @@ class Pitch(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     content = db.Column(db.String)
-    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    category_id = db.Column(db.Integer, db.ForeignKey("categories_id"))
+    user_id = db.Column(db.Integer,db.ForeignKey("users_id"))
     comment = db.relationship("Comments", backref="pitches", lazy = "dynamic")
     vote = db.relationship("Votes", backref="pitches", lazy = "dynamic")
 
@@ -102,8 +102,8 @@ class Comments(db.Model):
     id = db.Column(db. Integer, primary_key=True)
     opinion = db.Column(db.String(255))
     time_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users_id"))
+    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches_id"))
 
 
     def save_comment(self):
@@ -126,8 +126,8 @@ class Votes(db.Model):
 
     id = db.Column(db. Integer, primary_key=True)
     vote = db.Column(db.Integer)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users_id"))
+    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches_id"))
 
     def save_vote(self):
         db.session.add(self)
@@ -135,5 +135,5 @@ class Votes(db.Model):
 
     @classmethod
     def get_votes(cls,user_id,pitches_id):
-        votes = Vote.query.filter_by(user_id=user_id, pitches_id=pitches_id).all()
+        votes = Votes.query.filter_by(user_id=user_id, pitches_id=pitches_id).all()
         return votes
