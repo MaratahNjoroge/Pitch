@@ -5,7 +5,7 @@ class Config:
     General configuration parent class
     '''
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     print(SQLALCHEMY_DATABASE_URI, 'maratah')
     SECRET_KEY = os.environ.get("SECRET_KEY")
     UPLOADED_PHOTOS_DEST ='app/static/photos'
