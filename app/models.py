@@ -69,8 +69,8 @@ class Pitch(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     content = db.Column(db.String)
-    category_id = db.Column(db.Integer, db.ForeignKey("categories_id"))
-    user_id = db.Column(db.Integer,db.ForeignKey("users_id"))
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     comment = db.relationship("Comments", backref="pitches", lazy = "dynamic")
     vote = db.relationship("Votes", backref="pitches", lazy = "dynamic")
 
@@ -87,8 +87,11 @@ class Pitch(db.Model):
 
     # display pitches
 
-    def get_pitches(self):
+    def get_pitches(id):
+
         pitches = Pitch.query.filter_by(category_id=id).all()
+
+      
         return pitches
 
 
@@ -102,8 +105,8 @@ class Comments(db.Model):
     id = db.Column(db. Integer, primary_key=True)
     opinion = db.Column(db.String(255))
     time_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey("users_id"))
-    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
 
 
     def save_comment(self):
@@ -126,8 +129,8 @@ class Votes(db.Model):
 
     id = db.Column(db. Integer, primary_key=True)
     vote = db.Column(db.Integer)
-    user_id = db.Column(db.Integer, db.ForeignKey("users_id"))
-    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
 
     def save_vote(self):
         db.session.add(self)

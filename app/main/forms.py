@@ -6,7 +6,7 @@ class PitchForm(FlaskForm):
     ''' Create a wtf form for creating pitches '''
 
     content = TextAreaField('Your Pitch')
-    submt = SubmitField('Submit')
+    submit = SubmitField('Submit')
 
 class CommentForm (FlaskForm):
     ''' Create a wtf form for creating a pitch '''

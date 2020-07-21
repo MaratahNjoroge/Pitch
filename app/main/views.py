@@ -24,9 +24,9 @@ def new_pitch(id):
     ''' Function to check Pitches form and fetch data from the fields '''
     form = PitchForm()
     category = Category.query.filter_by(id=id).first()
-
-    if category is None:
-        abort(404)
+   
+    if not category :
+        print('this worjks')
 
     if form.validate_on_submit():
         content = form.content.data
@@ -39,10 +39,12 @@ def new_pitch(id):
 @main.route('/categories/<int:id>')
 def category(id):
     category = Category.query.get(id)
+   
     if category is None:
         abort(404)
 
     pitches=Pitch.get_pitches(id)
+    print(pitches, 1243)
     return render_template('category.html', pitches=pitches, category=category)
 
 @main.route('/add/category', methods=['GET','POST'])
@@ -61,7 +63,7 @@ def new_category():
         return redirect(url_for('.index'))
 
     title = 'New category'
-    return render_template('new_category.html', category_form = form,title=title)
+    return render_template('new-category.html', category_form = form,title=title)
 
 
 #view single pitch alongside its comments
