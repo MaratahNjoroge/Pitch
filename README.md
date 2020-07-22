@@ -31,7 +31,7 @@ This is a web application that allows various users to submit a short pitch. Use
 
 ## Setup/Installation Requirements
 * internet access
-* $ git clone https://maratah-pitch.herokuapp.com/
+* $ git clone https://github.com/MaratahNjoroge/Pitch
 * $ cd Pitch
 * $ python3.6 -m venv virtual (install virtual environment)
 * $ source virtual/bin/activate
