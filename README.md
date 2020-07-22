@@ -66,4 +66,4 @@ User authentication does not function properly.
 
 ### License
 
-**[MIT](./LICENSE)** (c) 2017 **[MaratahNjoroge](https://maratahnjoroge.github.io/Portfolio-LP/)**
+**[MIT](./LICENSE)** (c) 2020 **[MaratahNjoroge](https://maratahnjoroge.github.io/Portfolio-LP/)**
